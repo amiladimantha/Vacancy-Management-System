@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "119TMMtDE9EyIdKht3BeikWnGpOTWsYuO1vdlpJefhf9/bof4Xk0XzNf7ALF9D85P/NwNdg8EE7z2V02BG6FXQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\amila\\OneDrive\\Desktop\\VMS_Azure\\Vacancy_Management_System\\vms_backend\\VMS.Library\\VMS.Library.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\amila\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\amila\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\amila\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

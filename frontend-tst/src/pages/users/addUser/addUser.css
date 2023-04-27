@@ -1,0 +1,88 @@
+.users{
+    flex: 4;
+}
+
+.approve{
+     border: none;
+     border-radius: 10px;
+     padding: 5px 10px;
+     background-color: #36d086;
+     color: white;
+     margin: 2px;
+}
+
+.reject{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #d03636;
+    color: white;
+    margin: 2px;
+}
+
+.leaveAdd{
+    border: none;
+    height: 40px;
+    width: 150px;
+    font-size: large;
+    border-radius: 10px;
+    background-color: #36d086;
+    color: white;
+}
+
+.requestLeave{
+    border: none;
+    height: 40px;
+    width: 200px;
+    font-size: large;
+    border-radius: 10px;
+    background-color: #36d086;
+    color: white;
+}
+
+.leaveEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #368dd0;
+    color: white;
+    margin: 2px;
+}
+
+.leaveAdd_div{
+    padding-bottom: 10px;
+}
+
+.Reject:hover,.Approve:hover,.leaveAdd:hover{
+    background-color: rgb(255, 255, 255);
+}
+
+.userimg_div{
+    display: flex;
+    align-items: center;
+}
+
+.userimg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.submitbtn{
+    float: right;
+}
+
+.info-card{
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.title1{
+    margin-top: 20px;
+}
+
+.title2{
+    margin-top:40px;
+}

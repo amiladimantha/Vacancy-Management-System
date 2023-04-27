@@ -1,0 +1,15 @@
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\bin\Debug\net6.0\VMS.Data.deps.json
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\bin\Debug\net6.0\VMS.Data.dll
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\bin\Debug\net6.0\VMS.Data.pdb
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\bin\Debug\net6.0\VMS.Library.dll
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\bin\Debug\net6.0\VMS.Library.pdb
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.csproj.AssemblyReference.cache
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.AssemblyInfoInputs.cache
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.AssemblyInfo.cs
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.csproj.CoreCompileInputs.cache
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.csproj.CopyComplete
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.dll
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\refint\VMS.Data.dll
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\VMS.Data.pdb
+C:\Users\amila\OneDrive\Desktop\VMS_Azure\Vacancy_Management_System\vms_backend\VMS.Data\obj\Debug\net6.0\ref\VMS.Data.dll

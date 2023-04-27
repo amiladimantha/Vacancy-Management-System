@@ -1,0 +1,116 @@
+body {
+    font-family: 'Poppins', sans-serif;
+  }
+.sidebar {
+  flex: 1;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #0097E6;
+  position: sticky;
+  padding-top: 10px;
+  transition: width 1s ease;
+  transform: translateX(0);
+  overflow: scroll;
+  width: 80px;
+}
+.sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+/* .sidebar.visible{
+    transform: translateX(-1%);
+} */
+
+.sidebarWrapper{
+    padding: 10px;
+}
+
+.sidebarSecondaryButton{
+    border: "none";
+    background: "none";
+    padding: 0px;
+}
+
+.sidebarwrappersecondary{
+    position: relative;
+  right: -10px;
+  top : 0px;
+}
+
+.sidebarMenu{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sidebarList{
+    list-style: none;
+    padding: 1px;
+}
+
+.sidebarListItem{
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.iconOnly .iconStyle {
+    margin-right: 0;
+  }
+  
+  .iconOnly .iconStyle + * {
+    display: none;
+  }
+  
+.sidebarListItem.selected, .sidebarListItem:hover{
+    background-color: #ffffff;
+    color: rgb(19, 19, 19);
+}
+
+.iconStyle{
+    padding: 5px;
+}
+
+.link{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.active{
+    background-color: #368dd0;
+}
+
+
+.parent-container:hover{
+    background-color: #d3d3d3;
+}
+
+.parent-container-top:hover{
+    background-color: #d3d3d3;
+}
+
+.parent-container{
+    margin-top: -94px;
+                   margin-right: 5px;
+                   margin-left: 5px;
+                   padding-bottom:  100px;
+                  padding-top: 40px;
+                  width: auto;
+                  height: 250px;
+                  background-color: #1F618D;
+                  clip-path: polygon(51% 9%,99% 0%,100% 75%,50% 84%,0% 75%,0% 0%);
+}
+
+.parent-container-top{
+    margin-top: 5px;
+                  margin-right: 5px;
+                  margin-left:5px;
+                  margin-bottom: 8px; 
+                  padding-bottom: 100px;
+                  width: auto;
+                  height: 250px;
+                  background-color: #1A5276;
+              clip-path: polygon(51% 0%,99% 0%,100% 75%,50% 84%,0% 75%,0% 0%); 
+}

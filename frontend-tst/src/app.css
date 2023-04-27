@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+}
+
+.others{
+    flex:5;
+    margin: 20px;
+    overflow-x: auto;
+
+}
+
+.sdbar{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

@@ -1,0 +1,162 @@
+.users{
+    flex: 4;
+}
+
+.userApprove{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #36d086;
+    color: white;
+    margin: 2px;
+}
+
+.userEdit{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #368dd0;
+    color: white;
+    margin: 2px;
+}
+
+.userBlock{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #d0c636;
+    color: white;
+    margin: 2px;
+}
+
+.userActive{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #45d036;
+    color: white;
+    margin: 2px;
+}
+
+.userDelete{
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #d03636;
+    color: white;
+    margin: 2px;
+}
+
+.userAdd{
+    border: none;
+    height: 40px;
+    width: 150px;
+    font-size: large;
+    border-radius: 10px;
+    background-color: #36d086;
+    color: white;
+}
+
+.userAdd_div{
+    padding-bottom: 10px;
+}
+
+.userDelete:hover,.userEdit:hover,.userAdd:hover, .userBlock:hover, .userApprove:hover, .userActive:hover{
+    background-color: rgb(255, 255, 255);
+    color: #000;
+}
+
+
+/* ///////////// edit user */
+
+.editUser{
+    flex: 4;
+    padding: 20;
+}
+
+.userTitleContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+/* ///////////// users ////////*/
+
+.datatable { 
+border-radius: 10px;
+  width: 100%;
+  overflow-x: scroll;
+	}
+
+.datatable th, .datatable td{
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.datatable tr:hover {
+    background-color: #ddd;
+}
+
+.datatable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0097E6;
+  color: white;
+}
+
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	table { 
+	  	width: 100%; 
+	}
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		/* Label the data */
+		content: attr(data-column);
+
+		color: #000;
+		font-weight: bold;
+	}
+
+}
