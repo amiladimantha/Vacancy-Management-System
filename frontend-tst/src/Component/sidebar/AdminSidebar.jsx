@@ -2,7 +2,7 @@ import "./sidebar.css";
 import {
   HomeOutlined,
   UserOutlined,
-  ProfileOutlined,
+  ProjectOutlined,
   FileAddOutlined,
   FileMarkdownOutlined,
   AppstoreAddOutlined,
@@ -11,6 +11,10 @@ import {
   UserAddOutlined,  
   MenuFoldOutlined,
   CloseOutlined,
+  ScheduleOutlined,
+  FolderOutlined,
+  FolderAddOutlined,
+  SendOutlined,
 } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
@@ -119,10 +123,10 @@ export default function AdminSidebar() {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div>
-                  {!sidebarVisible && <ProfileOutlined className="iconStyle" />}
+                  {!sidebarVisible && <FolderOutlined className="iconStyle" />}
                   {!sidebarVisible && <span className="text">Jobs</span>}
                 </div>
-                {sidebarVisible && <ProfileOutlined className="iconStyle" />}
+                {sidebarVisible && <FolderOutlined className="iconStyle" />}
               </li>
             </NavLink>
             <NavLink
@@ -137,10 +141,10 @@ export default function AdminSidebar() {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div>
-                  {!sidebarVisible && <ProfileOutlined className="iconStyle" />}
+                  {!sidebarVisible && <FolderAddOutlined className="iconStyle" />}
                   {!sidebarVisible && <span className="text">Add Job</span>}
                 </div>
-                {sidebarVisible && <ProfileOutlined className="iconStyle" />}
+                {sidebarVisible && <FolderAddOutlined className="iconStyle" />}
               </li>
             </NavLink>
             <NavLink
@@ -155,10 +159,10 @@ export default function AdminSidebar() {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div>
-                  {!sidebarVisible && <FileAddOutlined className="iconStyle" />}
+                  {!sidebarVisible && <ProjectOutlined className="iconStyle" />}
                   {!sidebarVisible && <span className="text">Applicants</span>}
                 </div>
-                {sidebarVisible && <FileAddOutlined className="iconStyle" />}
+                {sidebarVisible && <ProjectOutlined className="iconStyle" />}
               </li>
             </NavLink>
             <NavLink
@@ -174,14 +178,14 @@ export default function AdminSidebar() {
               >
                 <div>
                   {!sidebarVisible && (
-                    <AppstoreAddOutlined className="iconStyle" />
+                    <ScheduleOutlined className="iconStyle" />
                   )}
                   {!sidebarVisible && (
                     <span className="text">Approved Applicants</span>
                   )}
                 </div>
                 {sidebarVisible && (
-                  <AppstoreAddOutlined className="iconStyle" />
+                  <ScheduleOutlined className="iconStyle" />
                 )}
               </li>
             </NavLink>
@@ -198,12 +202,12 @@ export default function AdminSidebar() {
               >
                 <div>
                   {!sidebarVisible && (
-                    <FileMarkdownOutlined className="iconStyle" />
+                    <SendOutlined className="iconStyle" />
                   )}
                   {!sidebarVisible && <span className="text">Hired Applicants</span>}
                 </div>
                 {sidebarVisible && (
-                  <FileMarkdownOutlined className="iconStyle" />
+                  <SendOutlined className="iconStyle" />
                 )}
               </li>
             </NavLink>
