@@ -89,7 +89,7 @@ namespace VMS.Data
         {
             return false;
         }
-        public virtual bool AddJob(int creator_Id, string title, string description, byte[] image)
+        public virtual bool AddJob(int creator_Id, string title, string description, string responsibilities, string requirements, byte[] image)
         {
             return false;
         }
@@ -110,6 +110,10 @@ namespace VMS.Data
             return false;
         }
         public virtual bool HireApplicant(HireApplicant hireApplicant)
+        {
+            return false;
+        }
+        public virtual bool EditMeeting(EditMeeting editMeeting)
         {
             return false;
         }

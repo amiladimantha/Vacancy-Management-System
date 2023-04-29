@@ -28,13 +28,15 @@ namespace VMS.Controllers
                     ApplicantList al = new ApplicantList();
                     al.ID = Convert.ToInt32(dt.Rows[i]["ID"]);
                     al.Job_ID = Convert.ToInt32(dt.Rows[i]["Job_ID"]);
+                    al.Title = Convert.ToString(dt.Rows[i]["Title"]); // map the new Job_Name column
                     al.Name = Convert.ToString(dt.Rows[i]["Name"]);
                     al.Email = Convert.ToString(dt.Rows[i]["Email"]);
                     al.Phone = Convert.ToString(dt.Rows[i]["Phone"]);
-                    al.National_ID = Convert.ToString(dt.Rows[i]["Name"]);
+                    al.National_ID = Convert.ToString(dt.Rows[i]["National_ID"]);
                     al.Hired = Convert.ToInt32(dt.Rows[i]["Hired"]);
                     al.IsApproved = Convert.ToInt32(dt.Rows[i]["IsApproved"]);
                     al.Meeting_Date = Convert.ToString(dt.Rows[i]["Meeting_Date"]);
+                    al.Meeting_Time = Convert.ToString(dt.Rows[i]["Meeting_Time"]);
                     if (dt.Rows[i]["Approvers_ID"] != DBNull.Value)
                     {
                         al.Approvers_ID = Convert.ToInt32(dt.Rows[i]["Approvers_ID"]);
@@ -44,15 +46,15 @@ namespace VMS.Controllers
                         al.Approvers_ID = 0; // or whatever default value you want to use
                     }
 
-                    if (dt.Rows[0]["CV"] != null && !string.IsNullOrEmpty(dt.Rows[0]["CV"].ToString()))
+                    if (dt.Rows[i]["CV"] != null && !string.IsNullOrEmpty(dt.Rows[i]["CV"].ToString()))
                     {
-                        if (dt.Rows[0]["CV"] is byte[])
+                        if (dt.Rows[i]["CV"] is byte[])
                         {
-                            al.CV = (byte[])dt.Rows[0]["CV"];
+                            al.CV = (byte[])dt.Rows[i]["CV"];
                         }
-                        else if (dt.Rows[0]["CV"] is string)
+                        else if (dt.Rows[i]["CV"] is string)
                         {
-                            al.CV = Convert.FromBase64String(dt.Rows[0]["CV"].ToString());
+                            al.CV = Convert.FromBase64String(dt.Rows[i]["CV"].ToString());
                         }
                         else
                         {
@@ -83,6 +85,7 @@ namespace VMS.Controllers
 
         }
 
+
         [HttpGet]
         [Route("ApprovedApplicantList")]
         public Response ApprovedApplicantList()
@@ -99,13 +102,15 @@ namespace VMS.Controllers
                     ApprovedApplicantList aal = new ApprovedApplicantList();
                     aal.ID = Convert.ToInt32(dt.Rows[i]["ID"]);
                     aal.Job_ID = Convert.ToInt32(dt.Rows[i]["Job_ID"]);
+                    aal.Title = Convert.ToString(dt.Rows[i]["Title"]);
                     aal.Name = Convert.ToString(dt.Rows[i]["Name"]);
                     aal.Email = Convert.ToString(dt.Rows[i]["Email"]);
                     aal.Phone = Convert.ToString(dt.Rows[i]["Phone"]);
-                    aal.National_ID = Convert.ToString(dt.Rows[i]["Name"]);
+                    aal.National_ID = Convert.ToString(dt.Rows[i]["National_ID"]);
                     aal.Hired = Convert.ToInt32(dt.Rows[i]["Hired"]);
                     aal.IsApproved = Convert.ToInt32(dt.Rows[i]["IsApproved"]);
                     aal.Meeting_Date = Convert.ToString(dt.Rows[i]["Meeting_Date"]);
+                    aal.Meeting_Time = Convert.ToString(dt.Rows[i]["Meeting_Time"]);
                     if (dt.Rows[i]["Approvers_ID"] != DBNull.Value)
                     {
                         aal.Approvers_ID = Convert.ToInt32(dt.Rows[i]["Approvers_ID"]);
@@ -170,13 +175,15 @@ namespace VMS.Controllers
                     HiredApplicantList hal = new HiredApplicantList();
                     hal.ID = Convert.ToInt32(dt.Rows[i]["ID"]);
                     hal.Job_ID = Convert.ToInt32(dt.Rows[i]["Job_ID"]);
+                    hal.Title = Convert.ToString(dt.Rows[i]["Title"]);
                     hal.Name = Convert.ToString(dt.Rows[i]["Name"]);
                     hal.Email = Convert.ToString(dt.Rows[i]["Email"]);
                     hal.Phone = Convert.ToString(dt.Rows[i]["Phone"]);
-                    hal.National_ID = Convert.ToString(dt.Rows[i]["Name"]);
+                    hal.National_ID = Convert.ToString(dt.Rows[i]["National_ID"]);
                     hal.Hired = Convert.ToInt32(dt.Rows[i]["Hired"]);
                     hal.IsApproved = Convert.ToInt32(dt.Rows[i]["IsApproved"]);
                     hal.Meeting_Date = Convert.ToString(dt.Rows[i]["Meeting_Date"]);
+                    hal.Meeting_Time = Convert.ToString(dt.Rows[i]["Meeting_Time"]);
                     if (dt.Rows[i]["Approvers_ID"] != DBNull.Value)
                     {
                         hal.Approvers_ID = Convert.ToInt32(dt.Rows[i]["Approvers_ID"]);
@@ -392,5 +399,25 @@ namespace VMS.Controllers
         //    }
         //    return response;
         //}
+
+        [HttpPost]
+        [Route("EditMeeting")]
+        public Response EditMeeting(EditMeeting editMeeting)
+        {
+            Response response = new Response();
+            bool ret = dataAccess.EditMeeting(editMeeting);
+
+            if (ret)
+            {
+                response.StatusCode = 200;
+                response.StatusMessage = "Meeting Details Updated!";
+            }
+            else
+            {
+                response.StatusCode = 100;
+                response.StatusMessage = "Updating Failed!";
+            }
+            return response;
+        }
     }
 }

@@ -50,15 +50,17 @@ namespace VMS.Controllers
                     jl.Creator_ID = Convert.ToInt32(dt.Rows[i]["Creator_ID"]);
                     jl.Title = Convert.ToString(dt.Rows[i]["Title"]);
                     jl.Description = Convert.ToString(dt.Rows[i]["Description"]);
-                    if (dt.Rows[0]["Image"] != null && !string.IsNullOrEmpty(dt.Rows[0]["Image"].ToString()))
+                    jl.Responsibilities = Convert.ToString(dt.Rows[i]["Responsibilities"]);
+                    jl.Requirements = Convert.ToString(dt.Rows[i]["Requirements"]);
+                    if (dt.Rows[i]["Image"] != null && !string.IsNullOrEmpty(dt.Rows[i]["Image"].ToString()))
                     {
-                        if (dt.Rows[0]["Image"] is byte[])
+                        if (dt.Rows[i]["Image"] is byte[])
                         {
-                            jl.Image = (byte[])dt.Rows[0]["Image"];
+                            jl.Image = (byte[])dt.Rows[i]["Image"];
                         }
-                        else if (dt.Rows[0]["Image"] is string)
+                        else if (dt.Rows[i]["Image"] is string)
                         {
-                            jl.Image = Convert.FromBase64String(dt.Rows[0]["Image"].ToString());
+                            jl.Image = Convert.FromBase64String(dt.Rows[i]["Image"].ToString());
                         }
                         else
                         {
@@ -131,7 +133,7 @@ namespace VMS.Controllers
 
         [HttpPost]
         [Route("AddJob")]
-        public Response AddJob([FromForm] int creator_Id, [FromForm] string title, [FromForm] string description, IFormFile image)
+        public Response AddJob([FromForm] int creator_Id, [FromForm] string title, [FromForm] string description, [FromForm] string responsibilities, [FromForm] string requirements, IFormFile image)
         {
             Response response = new Response();
 
@@ -154,7 +156,7 @@ namespace VMS.Controllers
                 }
 
                 // Save image bytes to database along with title and description
-                bool ret = dataAccess.AddJob(creator_Id, title, description, imageBytes);
+                bool ret = dataAccess.AddJob(creator_Id, title, description, responsibilities, requirements, imageBytes);
 
                 if (ret)
                 {

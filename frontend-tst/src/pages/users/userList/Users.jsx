@@ -268,7 +268,7 @@ export default function UsersList() {
                             {val.isApproved === 0 ? (
                               <button
                                 className="userActive"
-                                onClick={(e) => handleActivate(e, val.id)}
+                                onClick={(e) => handleApprove(e, val.id)}
                               >
                                 Approve
                               </button>
@@ -357,7 +357,7 @@ export default function UsersList() {
 >
   <Form>
     <div className="form-group">
-      <label htmlFor="id">ID</label>
+      <label htmlFor="id"><b>ID</b></label>
       <Input
         type="text"
         className="form-control"
@@ -366,8 +366,9 @@ export default function UsersList() {
         disabled
       />
     </div>
+    <br />
     <div className="form-group">
-      <label htmlFor="name">Name</label>
+      <label htmlFor="name"><b>Name</b></label>
       <Input
         type="text"
         className="form-control"
@@ -378,8 +379,9 @@ export default function UsersList() {
         }
       />
     </div>
+    <br />
     <div className="form-group">
-      <label htmlFor="name">Email</label>
+      <label htmlFor="name"><b>Email</b></label>
       <Input
         type="text"
         className="form-control"
@@ -390,6 +392,7 @@ export default function UsersList() {
         }
       />
     </div>
+    <br />
     {/* <div className="form-group">
       <label htmlFor="name">Password</label>
       <Input
@@ -403,7 +406,7 @@ export default function UsersList() {
       />
     </div> */}
     <div className="form-group">
-      <label htmlFor="name">Phone</label>
+      <label htmlFor="name"><b>Phone</b></label>
       <Input
         type="text"
         className="form-control"

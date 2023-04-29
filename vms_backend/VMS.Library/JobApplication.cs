@@ -18,6 +18,7 @@ namespace VMS.Library
         public int? Hired { get; set; }
         public int? IsApproved { get; set; }
         public string? Meeting_Date { get; set; }
+        public string? Meeting_Time { get; set; }
         public byte[] CV { get; set; }
     }
 }

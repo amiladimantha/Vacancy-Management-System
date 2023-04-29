@@ -66,6 +66,63 @@
     color: #000;
 }
 
+/* iframe {
+    width: 100%;
+    height: calc(100vh - 150px);
+    max-width: 800px;
+    margin: 0 auto;
+    display: block;
+  } */
+  
+  .pdf-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .pdf-preview-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+  }
+  
+  .pdf-preview-body {
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    max-height: 70vh;
+    overflow: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .close-btn {
+    background-color: red;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
 
 /* ///////////// edit user */
 
@@ -84,22 +141,22 @@
 
 /* ///////////// users ////////*/
 
-.datatable { 
+.my-table3 { 
 border-radius: 10px;
   width: 100%;
   overflow-x: scroll;
 	}
 
-.datatable th, .datatable td{
+.my-table3 th, .my-table3 td{
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-.datatable tr:hover {
+.my-table3 tr:hover {
     background-color: #ddd;
 }
 
-.datatable th {
+.my-table3 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -107,6 +164,14 @@ border-radius: 10px;
   color: white;
 }
 
+.my-table3 th:nth-child(3),
+.my-table3 td:nth-child(3) {
+  min-width: 200px;
+}
+.my-table3 th:nth-child(6),
+.my-table3 td:nth-child(6) {
+  min-width: 200px;
+}
 
 /* 
 Max width before this PARTICULAR table gets nasty

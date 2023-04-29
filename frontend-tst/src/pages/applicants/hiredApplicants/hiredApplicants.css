@@ -84,28 +84,43 @@
 
 /* ///////////// users ////////*/
 
-.datatable { 
+.my-table1 { 
 border-radius: 10px;
   width: 100%;
   overflow-x: scroll;
 	}
 
-.datatable th, .datatable td{
+.my-table1 th, .my-table1 td{
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-.datatable tr:hover {
+.my-table1 tr:hover {
     background-color: #ddd;
 }
 
-.datatable th {
+.my-table1 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   background-color: #0097E6;
   color: white;
 }
+
+.my-table1 th:nth-child(11),
+.my-table1 td:nth-child(11) {
+  min-width: 100px;
+}
+
+.my-table1 th:nth-child(3),
+.my-table1 td:nth-child(3) {
+  min-width: 200px;
+}
+.my-table1 th:nth-child(6),
+.my-table1 td:nth-child(6) {
+  min-width: 200px;
+}
+
 
 
 /* 

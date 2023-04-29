@@ -1,6 +1,5 @@
 import React, { useEffect, useState, Component } from "react";
 import "react-table-6/react-table.css";
-import Decryption from "../../../Component/Decryption";
 import { Input, Form, Modal, message, Pagination } from "antd";
 import "./hiredApplicants.css";
 import axios from "axios";
@@ -12,6 +11,7 @@ export default function HiredApplicants() {
   const [visible, setVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [showPDF, setShowPDF] = useState(false);
 
   const accountTypes = ["Manager", "Staff"];
   const approved = ["No", "Yes"];
@@ -90,7 +90,7 @@ export default function HiredApplicants() {
             <div>
               <h2>Hired Applicants</h2>
               {currentData ? (
-                <table className="datatable">
+                <table className="my-table1">
                   <thead>
                     <tr>
                       <th
@@ -105,6 +105,12 @@ export default function HiredApplicants() {
                         onClick={() => handleSortTable1("job_ID")}
                       >
                         Job ID {getSortArrowTable1("job_ID")}
+                      </th>
+                      <th
+                        scope="col"
+                        onClick={() => handleSortTable1("title")}
+                      >
+                        Job Title {getSortArrowTable1("title")}
                       </th>
                       <th
                         scope="col"
@@ -144,6 +150,12 @@ export default function HiredApplicants() {
                       </th>
                       <th
                         scope="col"
+                        onClick={() => handleSortTable1("meeting_Time")}
+                      >
+                        Meeting Time {getSortArrowTable1("meeting_Time")}
+                      </th>
+                      <th
+                        scope="col"
                         style={{ borderTopRightRadius: "20px" }}
                         onClick={() => handleSortTable1("cv")}
                       >
@@ -157,6 +169,7 @@ export default function HiredApplicants() {
                         <tr>
                           <td>{val.id}</td>
                           <td>{val.job_ID}</td>
+                          <td>{val.title}</td>
                           <td>{val.approvers_ID}</td>
                           <td>{val.name}</td>
                           <td>{val.email}</td>
@@ -165,11 +178,39 @@ export default function HiredApplicants() {
                           <td>{hired[val.hired]}</td>
                           <td>{approved[val.isApproved]}</td>
                           <td>{val.meeting_Date}</td>
+                          <td>{val.meeting_Time}</td>
                           <td>
-  <a href={`data:application/pdf;base64,${val.cv}`} download="cv.pdf">
-    Download CV
-  </a>
-</td>
+                            <button
+                              className="userEdit"
+                              href="#"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setShowPDF(true);
+                              }}
+                            >
+                              Preview CV
+                            </button>
+                            {showPDF && (
+                              <div className="pdf-preview">
+                                <div className="pdf-preview-header">
+                                  <button
+                                    className="close-btn"
+                                    onClick={() => setShowPDF(false)}
+                                  >
+                                    &times;
+                                  </button>
+                                </div>
+                                <div className="pdf-preview-body">
+                                  <iframe
+                                    src={`data:application/pdf;base64,${val.cv}`}
+                                    width="100%"
+                                    height="500px"
+                                    frameBorder="0"
+                                  ></iframe>
+                                </div>
+                              </div>
+                            )}
+                          </td>
                         </tr>
                       );
                     })}

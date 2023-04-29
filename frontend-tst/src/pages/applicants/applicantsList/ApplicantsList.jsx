@@ -5,6 +5,7 @@ import { Input, Form, Modal, message, Pagination } from "antd";
 import "./applicantsList.css";
 import axios from "axios";
 
+
 export default function ApplicantsList() {
   const [data, setData] = useState([]);
   const [type, setAccountType] = useState();
@@ -13,10 +14,11 @@ export default function ApplicantsList() {
   const [visible, setVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [showPDF, setShowPDF] = useState(false);
 
   const accountTypes = ["Manager", "Staff"];
   const approved = ["No", "Yes", "Pending"];
-  const active = ["No", "Yes"];
+  const hired = ["No", "Yes"];
 
   useEffect(() => {
     getData();
@@ -124,6 +126,36 @@ export default function ApplicantsList() {
     return "";
   };
 
+  // const handlePreviewClick = (val) => {
+  //   const iframe = document.createElement("iframe");
+  //   iframe.setAttribute("src", `data:application/pdf;base64,${val.cv}`);
+  //   const closeBtn = document.createElement("button");
+  //   closeBtn.innerText = "Close";
+  //   closeBtn.addEventListener("click", () => {
+  //     document.body.removeChild(div);
+  //   });
+  //   closeBtn.style.position = "absolute";
+  //   closeBtn.style.top = "2px";
+  //   closeBtn.style.right = "2px";
+  //   closeBtn.style.borderRadius = "10px";
+  //   closeBtn.style.backgroundColor = "red";
+  //   closeBtn.style.color = "white";
+  //   const div = document.createElement("div");
+  //   div.appendChild(closeBtn);
+  //   div.appendChild(iframe);
+  //   div.style.position = "absolute";
+  //   div.style.top = "50%";
+  //   div.style.left = "50%";
+  //   div.style.transform = "translate(-50%, -50%)";
+  //   div.style.zIndex = "9999";
+  //   div.style.background = "black";
+  //   div.style.border = "1px solid black";
+  //   iframe.style.border = "none";
+  //   div.style.padding = "10px";
+  //   div.style.boxSizing = "border-box";
+  //   document.body.appendChild(div);
+  // };
+
   return (
     <>
       {(() => {
@@ -132,7 +164,7 @@ export default function ApplicantsList() {
             <div>
               <h2>Applicants</h2>
               {currentData ? (
-                <table className="datatable">
+                <table className="my-table3">
                   <thead>
                     <tr>
                       <th
@@ -150,9 +182,16 @@ export default function ApplicantsList() {
                       </th>
                       <th
                         scope="col"
+                        onClick={() => handleSortTable1("Title")}
+                      >
+                        Job Title {getSortArrowTable1("Title")}
+                      </th>
+                      <th
+                        scope="col"
                         onClick={() => handleSortTable1("approvers_ID")}
                       >
-                        Approvers ID {getSortArrowTable1("approvers_ID")}
+                        Approvers/Rejectors ID{" "}
+                        {getSortArrowTable1("approvers_ID")}
                       </th>
                       <th scope="col" onClick={() => handleSortTable1("name")}>
                         Name {getSortArrowTable1("name")}
@@ -178,7 +217,6 @@ export default function ApplicantsList() {
                       >
                         Is Approved {getSortArrowTable1("isApproved")}
                       </th>
-
                       <th scope="col">CV</th>
                       <th scope="col">Approve</th>
                       <th scope="col">Reject</th>
@@ -190,20 +228,63 @@ export default function ApplicantsList() {
                         <tr>
                           <td>{val.id}</td>
                           <td>{val.job_ID}</td>
-                          <td>{val.approvers_ID === 0 ? "Not Approved Yet" : val.approvers_ID}</td>
+                          <td>{val.title}</td>
+                          <td>
+                            {val.approvers_ID === 0
+                              ? "Not Approved Yet"
+                              : val.approvers_ID}
+                          </td>
                           <td>{val.name}</td>
                           <td>{val.email}</td>
                           <td>{val.phone}</td>
                           <td>{val.national_ID}</td>
-                          <td>{val.hired}</td>
+                          <td>{hired[val.hired]}</td>
                           <td>{approved[val.isApproved]}</td>
-                          <td>
-                            <a
+                          {/* <td>
+                            <button
+                              className="userEdit"
                               href={`data:application/pdf;base64,${val.cv}`}
-                              download="cv.pdf"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                handlePreviewClick(val);
+                              }}
                             >
-                              Download CV
-                            </a>
+                              Preview CV
+                            </button>
+                          </td> */}
+                          <td>
+                            <button
+                              className="userEdit"
+                              href="#"
+                              onClick={(event) => {
+                                event.preventDefault();
+                                setShowPDF(true);
+                              }}
+                            >
+                              Preview CV
+                            </button>
+                            {showPDF && (
+                              <div className="pdf-preview">
+                                <div className="pdf-preview-header">
+                                  <button
+                                    className="close-btn"
+                                    onClick={() => setShowPDF(false)}
+                                  >
+                                    &times;
+                                  </button>
+                                </div>
+                                <div className="pdf-preview-body">
+                                  <iframe
+                                    src={`data:application/pdf;base64,${val.cv}`}
+                                    width="100%"
+                                    height="500px"
+                                    frameBorder="0"
+                                  ></iframe>
+                                </div>
+                              </div>
+                            )}
                           </td>
 
                           <td>

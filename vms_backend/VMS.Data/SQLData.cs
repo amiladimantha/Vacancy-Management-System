@@ -158,7 +158,12 @@ namespace VMS.Data
         }
         public override bool EditJob(EditJob editJob)
         {
-            SqlCommand cmd = new SqlCommand("UPDATE Job_Vacancy SET Title = '" + editJob.Title + "', Description = '" + editJob.Description + "'  WHERE ID = '" + editJob.ID + "' ", connection);
+            SqlCommand cmd = new SqlCommand("UPDATE Job_Vacancy SET Title = @Title, Description = @Description, Responsibilities = @Responsibilities, Requirements = @Requirements WHERE ID = @ID", connection);
+            cmd.Parameters.AddWithValue("@Title", editJob.Title);
+            cmd.Parameters.AddWithValue("@Description", editJob.Description);
+            cmd.Parameters.AddWithValue("@Responsibilities", editJob.Responsibilities);
+            cmd.Parameters.AddWithValue("@Requirements", editJob.Requirements);
+            cmd.Parameters.AddWithValue("@ID", editJob.ID);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();
@@ -167,19 +172,23 @@ namespace VMS.Data
             return false;
         }
 
-        public override bool AddJob(int creator_Id, string title, string description, byte[] image)
+
+        public override bool AddJob(int creator_Id, string title, string description, string responsibilities, string requirements, byte[] image)
         {
-            SqlCommand cmd = new SqlCommand("Insert Into Job_Vacancy (Image, Title, Description, Creator_ID) Values (@Image, @Title, @Description, @Creator_ID)", connection);
+            SqlCommand cmd = new SqlCommand("Insert Into Job_Vacancy (Image, Title, Description, Responsibilities, Requirements, Creator_ID) Values (@Image, @Title, @Description, @Responsibilities, @Requirements, @Creator_ID)", connection);
             cmd.Parameters.AddWithValue("@Image", image);
             cmd.Parameters.AddWithValue("@Creator_ID", creator_Id);
             cmd.Parameters.AddWithValue("@Title", title);
             cmd.Parameters.AddWithValue("@Description", description);
+            cmd.Parameters.AddWithValue("@Responsibilities", responsibilities);
+            cmd.Parameters.AddWithValue("@Requirements", requirements);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();
             if (i > 0)
                 return true;
             return false;
+        
         }
 
         public override bool JobApplication( int job_Id, string name, string email, string phone, string national_Id, byte[] cv)
@@ -213,7 +222,18 @@ namespace VMS.Data
 
         public override bool RejectApplicant(RejectApplicant rejectApplicant)
         {
-            SqlCommand cmd = new SqlCommand("UPDATE Applicant SET IsApproved = 0 WHERE ID = '" + rejectApplicant.ID + "' ", connection);
+            SqlCommand cmd = new SqlCommand("UPDATE Applicant SET IsApproved = 0, Approvers_ID = '" + rejectApplicant.Approvers_ID + "' WHERE ID = '" + rejectApplicant.ID + "' ", connection);
+            connection.Open();
+            int i = cmd.ExecuteNonQuery();
+            connection.Close();
+            if (i > 0)
+                return true;
+            return false;
+        }
+
+        public override bool EditMeeting(EditMeeting editMeeting)
+        {
+            SqlCommand cmd = new SqlCommand("UPDATE Applicant SET Meeting_Date = '" + editMeeting.Meeting_Date + "', Meeting_Time = '" + editMeeting.Meeting_Time + "'  WHERE ID = '" + editMeeting.ID + "' ", connection);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();
@@ -251,21 +271,22 @@ namespace VMS.Data
         public override DataTable ApplicantList()
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Applicant", connection);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT A.*, J.Title FROM Applicant A JOIN Job_Vacancy J ON A.Job_ID = J.ID", connection);
             da.Fill(dt);
             return dt;
         }
+
         public override DataTable ApprovedApplicantList()
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Applicant WHERE IsApproved = 1", connection);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT A.*, J.Title FROM Applicant A JOIN Job_Vacancy J ON A.Job_ID = J.ID WHERE A.IsApproved = 1", connection);
             da.Fill(dt);
             return dt;
         }
         public override DataTable HiredApplicantList()
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Applicant WHERE IsApproved = 1 AND Hired = 1", connection);
+            SqlDataAdapter da = new SqlDataAdapter("SELECT A.*, J.Title FROM Applicant A JOIN Job_Vacancy J ON A.Job_ID = J.ID WHERE IsApproved = 1 AND Hired = 1", connection);
             da.Fill(dt);
             return dt;
         }

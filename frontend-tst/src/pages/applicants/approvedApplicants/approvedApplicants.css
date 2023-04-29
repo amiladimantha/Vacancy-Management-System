@@ -84,22 +84,22 @@
 
 /* ///////////// users ////////*/
 
-.datatable { 
+.my-table2 { 
 border-radius: 10px;
   width: 100%;
   overflow-x: scroll;
 	}
 
-.datatable th, .datatable td{
+.my-table2 th, .my-table2 td{
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-.datatable tr:hover {
+.my-table2 tr:hover {
     background-color: #ddd;
 }
 
-.datatable th {
+.my-table2 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -107,6 +107,19 @@ border-radius: 10px;
   color: white;
 }
 
+.my-table2 th:nth-child(11),
+.my-table2 td:nth-child(11) {
+  min-width: 100px;
+}
+
+.my-table2 th:nth-child(3),
+.my-table2 td:nth-child(3) {
+  min-width: 200px;
+}
+.my-table2 th:nth-child(6),
+.my-table2 td:nth-child(6) {
+  min-width: 200px;
+}
 
 /* 
 Max width before this PARTICULAR table gets nasty

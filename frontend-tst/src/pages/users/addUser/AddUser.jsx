@@ -95,7 +95,7 @@ export default function AddUser() {
         >
           <Form.Item
               name="Username"
-              label="Username"
+              label={<span className="my-class">Username</span>}
               hasFeedback
               rules={[
                 {
@@ -122,7 +122,7 @@ export default function AddUser() {
 
             <Form.Item
               name="email"
-              label="E-mail"
+              label={<span className="my-class">Email</span>}
               hasFeedback
               rules={[
                 {
@@ -145,7 +145,7 @@ export default function AddUser() {
 
             <Form.Item
               name="password"
-              label="Password"
+              label={<span className="my-class">Password</span>}
               rules={[
                 {
                   required: true,
@@ -169,7 +169,7 @@ export default function AddUser() {
 
             <Form.Item
               name="confirm"
-              label="Confirm Password"
+              label={<span className="my-class">Confirm Password</span>}
               dependencies={["password"]}
               hasFeedback
               rules={[
@@ -196,7 +196,7 @@ export default function AddUser() {
 
             <Form.Item
               name="phone"
-              label="Phone Number"
+              label={<span className="my-class">Phone</span>}
               hasFeedback
               rules={[
                 {
@@ -220,7 +220,7 @@ export default function AddUser() {
 
             <Form.Item
               name="type"
-              label="Account Type"
+              label={<span className="my-class">Account Type</span>}
               rules={[
                 {
                   required: true,
@@ -240,7 +240,7 @@ export default function AddUser() {
 
             <Form.Item
               name="isApproved"
-              label="Is Approved"
+              label={<span className="my-class">Is Approved</span>}
               rules={[
                 {
                   required: true,
