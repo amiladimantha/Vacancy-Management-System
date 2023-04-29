@@ -153,15 +153,16 @@ export default function JobsList() {
                       <th scope="col" onClick={() => handleSortTable1("title")}>
                         Title {getSortArrowTable1("title")}
                       </th>
-                      <th
+                      {/* <th
                         scope="col"
                         onClick={() => handleSortTable1("description")}
+                        hidden
                       >
                         Description {getSortArrowTable1("description")}
-                      </th>
-                      <th scope="col" onClick={() => handleSortTable1("image")}>
+                      </th> */}
+                      {/* <th scope="col" onClick={() => handleSortTable1("image")} hidden>
                         Image {getSortArrowTable1("image")}
-                      </th>
+                      </th> */}
                       <th scope="col">Edit</th>
                       <th scope="col" style={{ borderTopRightRadius: "20px" }}>
                         Delete
@@ -175,14 +176,14 @@ export default function JobsList() {
                           <td>{val.id}</td>
                           <td>{val.creator_ID}</td>
                           <td>{val.title}</td>
-                          <td>{val.description}</td>
-                          <td>
+                          {/* <td>{val.description} </td> */}
+                          {/* <td>
                             <img
                               src={`data:image/png;base64,${val.image}`}
                               alt="Image"
                               style={{ maxWidth: "300px", maxHeight: "200px" }}
                             />
-                          </td>
+                          </td> */}
 
                           <td>
                             <button
@@ -240,7 +241,7 @@ export default function JobsList() {
       >
         <Form>
           <div className="form-group">
-            <label htmlFor="id">ID</label>
+            <label htmlFor="id"><b>ID</b></label>
             <Input
               type="text"
               className="form-control"
@@ -249,8 +250,9 @@ export default function JobsList() {
               disabled
             />
           </div>
+          <br />
           <div className="form-group">
-            <label htmlFor="name">Creator ID</label>
+            <label htmlFor="name"><b>Creator ID</b></label>
             <Input
               type="text"
               className="form-control"
@@ -259,8 +261,9 @@ export default function JobsList() {
               disabled
             />
           </div>
+          <br />
           <div className="form-group">
-            <label htmlFor="name">Title</label>
+            <label htmlFor="name"><b>Title</b></label>
             <Input
               type="text"
               className="form-control"
@@ -271,8 +274,9 @@ export default function JobsList() {
               }
             />
           </div>
+          <br />
           <div className="form-group">
-            <label htmlFor="name">Description</label>
+            <label htmlFor="name"><b>Description</b></label>
             <Input.TextArea
               type="text"
               className="form-control"
@@ -281,6 +285,35 @@ export default function JobsList() {
               onChange={(e) =>
                 setEditData({ ...editData, description: e.target.value })
               }
+              autoSize={{ minRows: 16, maxRows: 32 }}
+            />
+          </div>
+          <br />
+          <div className="form-group">
+            <label htmlFor="name"><b>Responsibilities</b></label>
+            <Input.TextArea
+              type="text"
+              className="form-control"
+              id="responsibilities"
+              value={editData.responsibilities}
+              onChange={(e) =>
+                setEditData({ ...editData, responsibilities: e.target.value })
+              }
+              autoSize={{ minRows: 16, maxRows: 32 }}
+            />
+          </div>
+          <br />
+          <div className="form-group">
+            <label htmlFor="name"><b>Requirements</b></label>
+            <Input.TextArea
+              type="text"
+              className="form-control"
+              id="requirements"
+              value={editData.requirements}
+              onChange={(e) =>
+                setEditData({ ...editData, requirements: e.target.value })
+              }
+              autoSize={{ minRows: 16, maxRows: 32 }}
             />
           </div>
 
