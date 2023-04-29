@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Button, Form, Input, Row, Select, message } from "antd";
 import { Editor, EditorState } from "draft-js";
 import "draft-js/dist/Draft.css";
+import "./addJob.css";
 
 const { Option } = Select;
 
@@ -19,6 +20,8 @@ export default function AddJob() {
     setUserID(localStorage.getItem("id"));
   }, []);
 
+  const formRef = useRef();
+
   const defaultImageSrc =
     "https://th.bing.com/th/id/OIP.ruat7whad9-kcI8_1KH_tQHaGI?pid=ImgDet&rs=1";
 
@@ -31,10 +34,18 @@ export default function AddJob() {
     imageFile: null,
   });
 
+  useEffect(() => {
+    formRef.current.setFieldsValue({
+      image: values.imageFile,
+    });
+  }, [values.imageFile]);
+
   const [form] = Form.useForm();
-  const [title, setTitle] = useState();
+  const [title, setTitle] = useState("");
   const [id, setUserID] = useState();
   const [description, setDescription] = useState();
+  const [responsibilities, setResponsibilities] = useState();
+  const [requirements, setRequirements] = useState();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [errors, setErrors] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
@@ -44,75 +55,30 @@ export default function AddJob() {
     setDescription(editorState.getCurrentContent().getPlainText());
   };
 
-  // const handleSave = (e) => {
-  //   e.preventDefault();
-  //   const url = "https://localhost:7034/api/Job/AddJob";
-
-  //   const data = {
-  //     Title: title,
-  //     //Description: editorState.getCurrentContent().getPlainText()
-  //     Description: description,
-  //   };
-  //   axios
-  //     .post(url, data)
-  //     .then((result) => {
-  //       const dt = result.data;
-  //       alert(dt.statusMessage);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  // const handleSave = (e) => {
-  //   e.preventDefault();
-  //   const url = "https://localhost:7034/api/Job/AddJob";
-  
-  //   const formData = new FormData();
-  //   formData.append("id", id);
-  //   formData.append("file", selectedFile);
-  //   formData.append("Title", title);
-  //   formData.append("Description", description);
-  //   console.log(formData);
-  
-  //   axios
-  //     .post(url, formData)
-  //     .then((result) => {
-  //       const dt = result.data;
-  //       alert(dt.statusMessage);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  
-
-
   const handleSave = (formValues) => {
     const formData = new FormData();
-    formData.append("userId", formValues.userId);
-    formData.append("Job Title", formValues["Job Title"]);
-    formData.append("description", formValues.description);
-    formData.append("image", setSelectedFile);
-  
+    formData.append("creator_Id", id);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("responsibilities", responsibilities);
+    formData.append("requirements", requirements);
+    formData.append("image", selectedFile);
+
     axios
-      .post("https://localhost:7034/api/Job/AddJob", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log("Job added successfully:", response.data);
-        // Handle any success actions here
+      .post("https://localhost:7034/api/Job/AddJob", formData)
+      .then((result) => {
+        const data = result.data;
+        console.log(data);
+        if (data.statusCode === 200) {
+          message.success("Job Added Successfully");
+        } else {
+          message.error("Job Addition Failed");
+        }
       })
       .catch((error) => {
-        console.error("Error adding job:", error);
-        // Handle any error actions here
+        message.error(error);
       });
   };
-  
-  
 
   const applyErrorClass = (field) =>
     field in errors && errors[field] === false ? " invalid-field" : "";
@@ -123,9 +89,10 @@ export default function AddJob() {
     reader.onloadend = () => {
       setValues({
         ...values,
-        image: file,
+        imageFile: file,
         imageSrc: reader.result,
-      });
+    });
+    
     };
     reader.readAsDataURL(file);
   };
@@ -147,7 +114,7 @@ export default function AddJob() {
   return (
     <>
       <Row>
-        <Form
+        <Form ref={formRef}
           style={{ width: "100%" }}
           {...formItemLayout}
           form={form}
@@ -157,13 +124,13 @@ export default function AddJob() {
           }}
           scrollToFirstError
         >
-          <Form.Item name="userId" label="User ID">
+          <Form.Item name="userId" label={<span className="my-class">User ID</span>}>
             <Input placeholder={id} disabled={true} />
           </Form.Item>
 
           <Form.Item
-            name="Job Title"
-            label="Job Title"
+            name="jobTitle"
+            label={<span className="my-class">Job Title</span>}
             hasFeedback
             rules={[
               {
@@ -174,6 +141,7 @@ export default function AddJob() {
           >
             <Input
               placeholder="Software Engineer"
+              name="jobTitle"
               label="Job Title"
               type="text"
               onChange={(e) => setTitle(e.target.value)}
@@ -182,7 +150,7 @@ export default function AddJob() {
 
           <Form.Item
             name="description"
-            label="Description"
+            label={<span className="my-class">Description</span>}
             rules={[
               {
                 required: true,
@@ -190,12 +158,42 @@ export default function AddJob() {
               },
             ]}
           >
-            <Input.TextArea onChange={(e) => setDescription(e.target.value)} />
+            <Input.TextArea onChange={(e) => setDescription(e.target.value)} autoSize={{ minRows: 16, maxRows: 32 }}  />
+          </Form.Item>
+
+          <Form.Item
+            name="responsibilities"
+            label={<span className="my-class">Responsibilities</span>}
+            rules={[
+              {
+                required: true,
+                message: "Please fill in the Responsibilities of the Job!",
+              },
+            ]}
+          >
+            <Input.TextArea
+              onChange={(e) => setResponsibilities(e.target.value)}
+              autoSize={{ minRows: 16, maxRows: 32 }}
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="requirements"
+            label={<span className="my-class">Requirements</span>}
+            rules={[
+              {
+                required: true,
+                message: "Please fill in the eRequirements for the Job!",
+              },
+            ]}
+          >
+            <Input.TextArea onChange={(e) => setRequirements(e.target.value)}
+            autoSize={{ minRows: 16, maxRows: 32 }} />
           </Form.Item>
 
           <Form.Item
             name="image"
-            label="Image"
+            label={<span className="my-class">Image</span>}
             rules={[
               {
                 required: true,
