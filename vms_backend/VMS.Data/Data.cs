@@ -85,11 +85,11 @@ namespace VMS.Data
         {
             return false;
         }
-        public virtual bool EditJob(EditJob editJob)
+        public virtual bool EditJob(int id, int creator_Id, string title, string description, string responsibilities, string requirements, string closing_Date, byte[] image)
         {
             return false;
         }
-        public virtual bool AddJob(int creator_Id, string title, string description, string responsibilities, string requirements, byte[] image)
+        public virtual bool AddJob(int creator_Id, string title, string description, string responsibilities, string requirements, string closing_Date, byte[] image)
         {
             return false;
         }

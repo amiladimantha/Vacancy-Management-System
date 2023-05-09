@@ -120,15 +120,15 @@ namespace VMS.Controllers
                         aal.Approvers_ID = 0; // or whatever default value you want to use
                     }
 
-                    if (dt.Rows[0]["CV"] != null && !string.IsNullOrEmpty(dt.Rows[0]["CV"].ToString()))
+                    if (dt.Rows[i]["CV"] != null && !string.IsNullOrEmpty(dt.Rows[i]["CV"].ToString()))
                     {
-                        if (dt.Rows[0]["CV"] is byte[])
+                        if (dt.Rows[i]["CV"] is byte[])
                         {
                             aal.CV = (byte[])dt.Rows[0]["CV"];
                         }
-                        else if (dt.Rows[0]["CV"] is string)
+                        else if (dt.Rows[i]["CV"] is string)
                         {
-                            aal.CV = Convert.FromBase64String(dt.Rows[0]["CV"].ToString());
+                            aal.CV = Convert.FromBase64String(dt.Rows[i]["CV"].ToString());
                         }
                         else
                         {
@@ -193,15 +193,15 @@ namespace VMS.Controllers
                         hal.Approvers_ID = 0; // or whatever default value you want to use
                     }
 
-                    if (dt.Rows[0]["CV"] != null && !string.IsNullOrEmpty(dt.Rows[0]["CV"].ToString()))
+                    if (dt.Rows[i]["CV"] != null && !string.IsNullOrEmpty(dt.Rows[i]["CV"].ToString()))
                     {
-                        if (dt.Rows[0]["CV"] is byte[])
+                        if (dt.Rows[i]["CV"] is byte[])
                         {
-                            hal.CV = (byte[])dt.Rows[0]["CV"];
+                            hal.CV = (byte[])dt.Rows[i]["CV"];
                         }
-                        else if (dt.Rows[0]["CV"] is string)
+                        else if (dt.Rows[i]["CV"] is string)
                         {
-                            hal.CV = Convert.FromBase64String(dt.Rows[0]["CV"].ToString());
+                            hal.CV = Convert.FromBase64String(dt.Rows[i]["CV"].ToString());
                         }
                         else
                         {

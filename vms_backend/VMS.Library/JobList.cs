@@ -10,6 +10,7 @@ namespace VMS.Library
         public string Description { get; set; }
         public string Responsibilities { get; set; }
         public string Requirements { get; set; }
+        public string Closing_Date { get; set; }
         public byte[] Image { get; set; }
     }
 }

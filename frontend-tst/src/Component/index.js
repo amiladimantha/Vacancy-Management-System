@@ -7,12 +7,14 @@ import ManagerSidebar from "./sidebar/ManagerSidebar";
 import ManagerTopbar from "./topbar/ManagerTopbar";
 import Encryption from "./Encryption";
 import SidebarImage from "./sidebar/ImageWithPolygonHighlight";
+import Topbar from "./topbar/Topbar";
 
 export default{
     Login,
     Register,
     AdminTopbar,
     ManagerTopbar,
+    Topbar,
     Sidebar,
     AdminSidebar,
     ManagerSidebar,

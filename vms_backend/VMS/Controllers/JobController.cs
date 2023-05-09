@@ -52,6 +52,7 @@ namespace VMS.Controllers
                     jl.Description = Convert.ToString(dt.Rows[i]["Description"]);
                     jl.Responsibilities = Convert.ToString(dt.Rows[i]["Responsibilities"]);
                     jl.Requirements = Convert.ToString(dt.Rows[i]["Requirements"]);
+                    jl.Closing_Date = Convert.ToString(dt.Rows[i]["Closing_Date"]);
                     if (dt.Rows[i]["Image"] != null && !string.IsNullOrEmpty(dt.Rows[i]["Image"].ToString()))
                     {
                         if (dt.Rows[i]["Image"] is byte[])
@@ -93,21 +94,48 @@ namespace VMS.Controllers
 
         [HttpPost]
         [Route("EditJob")]
-        public Response EditJob(EditJob editJob)
+        public Response EditJob([FromForm] int id, [FromForm] int creator_Id, [FromForm] string title, [FromForm] string description, [FromForm] string responsibilities, [FromForm] string requirements, [FromForm] string closing_Date, IFormFile image)
         {
             Response response = new Response();
-            bool ret = dataAccess.EditJob(editJob);
 
-            if (ret)
+            try
             {
-                response.StatusCode = 200;
-                response.StatusMessage = "Job Edited Successfully!";
+
+                if (image == null || image.Length == 0)
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "Please select an image.";
+                    return response;
+                }
+
+                // Convert image to byte array
+                byte[] imageBytes;
+                using (var memoryStream = new MemoryStream())
+                {
+                    image.CopyTo(memoryStream);
+                    imageBytes = memoryStream.ToArray();
+                }
+
+                // Save image bytes to database along with title and description
+                bool ret = dataAccess.EditJob(id, creator_Id, title, description, responsibilities, requirements, closing_Date, imageBytes);
+
+                if (ret)
+                {
+                    response.StatusCode = 200;
+                    response.StatusMessage = "Job edited successfully!";
+                }
+                else
+                {
+                    response.StatusCode = 100;
+                    response.StatusMessage = "Job editing failed!";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                response.StatusCode = 100;
-                response.StatusMessage = "Job Editing Failed!";
+                response.StatusCode = 500;
+                response.StatusMessage = "An error occurred while editing job vacancy.";
             }
+
             return response;
         }
 
@@ -133,7 +161,7 @@ namespace VMS.Controllers
 
         [HttpPost]
         [Route("AddJob")]
-        public Response AddJob([FromForm] int creator_Id, [FromForm] string title, [FromForm] string description, [FromForm] string responsibilities, [FromForm] string requirements, IFormFile image)
+        public Response AddJob([FromForm] int creator_Id, [FromForm] string title, [FromForm] string description, [FromForm] string responsibilities, [FromForm] string requirements, [FromForm] string closing_Date, IFormFile image)
         {
             Response response = new Response();
 
@@ -156,23 +184,23 @@ namespace VMS.Controllers
                 }
 
                 // Save image bytes to database along with title and description
-                bool ret = dataAccess.AddJob(creator_Id, title, description, responsibilities, requirements, imageBytes);
+                bool ret = dataAccess.AddJob(creator_Id, title, description, responsibilities, requirements, closing_Date, imageBytes);
 
                 if (ret)
                 {
                     response.StatusCode = 200;
-                    response.StatusMessage = "Profile image edited successfully!";
+                    response.StatusMessage = "Job added successfully!";
                 }
                 else
                 {
                     response.StatusCode = 100;
-                    response.StatusMessage = "Profile image editing failed!";
+                    response.StatusMessage = "Job Adding failed!";
                 }
             }
             catch (Exception ex)
             {
                 response.StatusCode = 500;
-                response.StatusMessage = "An error occurred while editing the profile image.";
+                response.StatusMessage = "An error occurred while adding job vacancy.";
             }
 
             return response;

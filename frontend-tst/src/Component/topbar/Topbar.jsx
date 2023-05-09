@@ -1,24 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./topbar.css";
 import logo from "./logo.jpeg";
 import { useNavigate } from "react-router-dom";
-import { BellFilled, SettingFilled } from "@ant-design/icons";
 
 export default function Topbar() {
   const navigate = useNavigate();
-  const [username, setUserName] = useState("");
-  const [image, setImage] = useState("");
 
-  useEffect(() => {
-    setUserName(localStorage.getItem("username"));
-    setImage(localStorage.getItem("image"));
-  }, []);
-
-  const logout = (e) => {
-    e.preventDefault();
-    localStorage.removeItem("username");
+  const handleLogin = () => {
     navigate("/");
-  };
+  }
+
   return (
     <div className="topbar">
       <div className="topbarWrapper">
@@ -28,18 +19,20 @@ export default function Topbar() {
           </div>
         </div>
         <div className="topRight">
-          {/* <div className="topbarIconContainer">
-                    <BellFilled />
-                    <span className='topIconBadge'>2</span>
-                </div>
-                <div className="topbarIconContainer">
-                    <SettingFilled />
-                </div> */}
-          <div className="topbarIconContainer">
-            <label>{username}</label>
+          <div className="topbarLinksWrapper">
+            <ul className="topbarLinks">
+              <li>
+                <a href="#">Jobs</a>
+              </li>
+              <li>
+                <a href="#">About Us</a>
+              </li>
+              <li>
+                <a href="#">Contact Us</a>
+              </li>
+            </ul>
           </div>
-
-          <img src={`data:image/png;base64,${image}`} alt="" className="topAvatar" />
+          <button className="loginButton" onClick={handleLogin}>Login</button>
         </div>
       </div>
     </div>

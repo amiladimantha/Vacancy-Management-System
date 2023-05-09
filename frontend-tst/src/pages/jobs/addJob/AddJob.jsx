@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { Button, Form, Input, Row, Select, message } from "antd";
+import { Button, Form, Input, Row, Select, message, DatePicker } from "antd";
 import { Editor, EditorState } from "draft-js";
+import moment from "moment";
 import "draft-js/dist/Draft.css";
 import "./addJob.css";
 
@@ -14,6 +15,11 @@ const formItemLayout = {
 const tailFormItemLayout = {
   wrapperCol: { span: 24, offset: 5 },
 };
+
+function disabledDate(current) {
+  // If the date is before today, disable it
+  return current && current < moment().startOf('day');
+}
 
 export default function AddJob() {
   useEffect(() => {
@@ -46,6 +52,7 @@ export default function AddJob() {
   const [description, setDescription] = useState();
   const [responsibilities, setResponsibilities] = useState();
   const [requirements, setRequirements] = useState();
+  const [closing_Date, setClosing_Date] = useState();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [errors, setErrors] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
@@ -62,6 +69,7 @@ export default function AddJob() {
     formData.append("description", description);
     formData.append("responsibilities", responsibilities);
     formData.append("requirements", requirements);
+    formData.append("closing_Date", closing_Date.format("YYYY-MM-DD"));
     formData.append("image", selectedFile);
 
     axios
@@ -183,13 +191,34 @@ export default function AddJob() {
             rules={[
               {
                 required: true,
-                message: "Please fill in the eRequirements for the Job!",
+                message: "Please fill in the Requirements for the Job!",
               },
             ]}
           >
             <Input.TextArea onChange={(e) => setRequirements(e.target.value)}
             autoSize={{ minRows: 16, maxRows: 32 }} />
           </Form.Item>
+
+          <Form.Item
+            name="closing_Date"
+            label={<span className="my-class">Closing Date</span>}
+            hasFeedback             
+            rules={[
+              {
+                required: true,
+                message: "Please select a Date!",
+              },
+            ]}
+          >
+            <DatePicker
+              style={{ width: "100%" }}
+              picker="date"
+              placeholder="Choose a closing Date"
+              onChange={(date) => setClosing_Date(date)}
+              disabledDate={disabledDate}
+            />
+          </Form.Item>
+          
 
           <Form.Item
             name="image"

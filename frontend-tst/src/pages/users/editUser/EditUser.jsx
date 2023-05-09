@@ -184,14 +184,15 @@ export default function EditUser() {
   
     axios
     .post("https://localhost:7034/api/Profile/EditProfileImage", formData)
-    .then((response) => {
-      // handle success
-      handleImageUploadSuccess(response);
+    .then((result) => {
+      const data = result.data;
+      console.log(data);
+      if (data.statusCode === 200) {
+        message.success("Image Uploaded Successfully");
+      } else {
+        message.error("Image Uploading Failed");
+      }
     })
-    .catch((error) => {
-      // handle error
-      handleImageUploadError(error);
-    });
   }
   
   

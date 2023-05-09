@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import "./app.css";
 import Pages from "./pages/index";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/Main/Landing";
 
 import { useNavigate } from "react-router";
 
@@ -32,6 +31,7 @@ function App() {
   const [accountType, setAccountType] = useState();
   return (
     <>
+
       <Router>
         {/**************** topbar *****************/}
 
@@ -63,6 +63,12 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/users/admin/*" element={<Component.AdminTopbar />} />
+        </Routes>
+        <Routes>
+          <Route 
+          path="/home/jobs"
+          element={<Component.Topbar />}>
+          </Route>
         </Routes>
 
         <div className="container">
@@ -113,6 +119,9 @@ function App() {
             <Routes>
               <Route path="/register" element={<Component.Register />} />
             </Routes>
+            <Routes>
+              <Route path="/home/jobs" element={<Pages.LandingJobs />} />
+            </Routes>
 
             {/* *************** admin **************** */}
             <Routes>
@@ -144,10 +153,7 @@ function App() {
                 path="/users/admin/edituser"
                 element={<Pages.EditUser />}
               />
-            </Routes>
-            <Routes>
-          <Route path="/home" element={<LandingPage />} />
-        </Routes>
+            </Routes>            
 
             {/* *************** manager **************** */}
             <Routes>

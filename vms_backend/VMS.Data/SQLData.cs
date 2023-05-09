@@ -156,14 +156,17 @@ namespace VMS.Data
                 return true;
             return false;
         }
-        public override bool EditJob(EditJob editJob)
+        public override bool EditJob(int id ,int creator_Id, string title, string description, string responsibilities, string requirements, string closing_Date, byte[] image)
         {
-            SqlCommand cmd = new SqlCommand("UPDATE Job_Vacancy SET Title = @Title, Description = @Description, Responsibilities = @Responsibilities, Requirements = @Requirements WHERE ID = @ID", connection);
-            cmd.Parameters.AddWithValue("@Title", editJob.Title);
-            cmd.Parameters.AddWithValue("@Description", editJob.Description);
-            cmd.Parameters.AddWithValue("@Responsibilities", editJob.Responsibilities);
-            cmd.Parameters.AddWithValue("@Requirements", editJob.Requirements);
-            cmd.Parameters.AddWithValue("@ID", editJob.ID);
+            SqlCommand cmd = new SqlCommand("UPDATE Job_Vacancy SET Title = @Title, Description = @Description, Responsibilities = @Responsibilities, Requirements = @Requirements, Closing_Date = @Closing_Date, Image = @Image WHERE ID = @ID", connection);
+            cmd.Parameters.AddWithValue("@Title", title);
+            cmd.Parameters.AddWithValue("@ID", id);
+            cmd.Parameters.AddWithValue("@Creator_ID", creator_Id);
+            cmd.Parameters.AddWithValue("@Description", description);
+            cmd.Parameters.AddWithValue("@Responsibilities", responsibilities);
+            cmd.Parameters.AddWithValue("@Requirements", requirements);
+            cmd.Parameters.AddWithValue("@Closing_Date", closing_Date);
+            cmd.Parameters.AddWithValue("@Image", image);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();
@@ -173,15 +176,16 @@ namespace VMS.Data
         }
 
 
-        public override bool AddJob(int creator_Id, string title, string description, string responsibilities, string requirements, byte[] image)
+        public override bool AddJob(int creator_Id, string title, string description, string responsibilities, string requirements, string closing_Date, byte[] image)
         {
-            SqlCommand cmd = new SqlCommand("Insert Into Job_Vacancy (Image, Title, Description, Responsibilities, Requirements, Creator_ID) Values (@Image, @Title, @Description, @Responsibilities, @Requirements, @Creator_ID)", connection);
+            SqlCommand cmd = new SqlCommand("Insert Into Job_Vacancy (Image, Title, Description, Responsibilities, Requirements, Creator_ID, Closing_Date) Values (@Image, @Title, @Description, @Responsibilities, @Requirements, @Creator_ID, @Closing_Date)", connection);
             cmd.Parameters.AddWithValue("@Image", image);
             cmd.Parameters.AddWithValue("@Creator_ID", creator_Id);
             cmd.Parameters.AddWithValue("@Title", title);
             cmd.Parameters.AddWithValue("@Description", description);
             cmd.Parameters.AddWithValue("@Responsibilities", responsibilities);
             cmd.Parameters.AddWithValue("@Requirements", requirements);
+            cmd.Parameters.AddWithValue("@Closing_Date", closing_Date);
             connection.Open();
             int i = cmd.ExecuteNonQuery();
             connection.Close();

@@ -1,0 +1,48 @@
+.body {
+  }
+  
+  /* Other styles */
+  
+
+.img-slider {
+  margin: 0 auto;
+  width: 1000px;
+  border: 1px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.slider-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .slider-image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  
+  
+
+.landing-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 50px 0;
+}
+
+.description-job{
+    padding: 50px;
+    max-width: 1000px; 
+    margin: 0 auto;
+}
+
+.form-job{
+  width: 1000px;
+}

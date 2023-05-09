@@ -26,11 +26,15 @@ export default function AdminTopbar() {
     navigate("/");
   };
 
+  const handleLogoClick = () => {
+    navigate("/home/jobs");
+  };
+
   return (
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <div className="logo">
+          <div className="logo" onClick={handleLogoClick}>
             <img src={logo} alt="Logo" />
           </div>
         </div>

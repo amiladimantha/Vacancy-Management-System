@@ -10,6 +10,7 @@ import AddJob from "./jobs/addJob/AddJob";
 import ApplicantsList from "./applicants/applicantsList/ApplicantsList";
 import ApprovedApplicants from "./applicants/approvedApplicants/ApprovedApplicants";
 import HiredApplicants from "./applicants/hiredApplicants/HiredApplicants";
+import LandingJobs from "./Main/Landing-Jobs/Landing-Jobs";
 
 export default{
     AdminDashboard,
@@ -23,5 +24,6 @@ export default{
     AddJob,
     ApplicantsList,
     ApprovedApplicants,
-    HiredApplicants
+    HiredApplicants,
+    LandingJobs
 };
