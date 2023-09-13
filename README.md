@@ -185,7 +185,7 @@ npm run preview
 
 ## Feedback and Contributions
 
-Your feedback, suggestions, and contributions are greatly appreciated in this project. Whether you want to provide input, propose improvements, or submit your ideas and enhancements, your involvement is highly valued. Keep in mind that this is just the beginning, and the real beauty lies in personalizing it to reflect your individual talents and achievements. Enjoy the process of crafting an impressive projects that truly represents you!
+Your feedback, suggestions, and contributions are greatly appreciated in this project. Whether you want to provide input, propose improvements, or submit your ideas and enhancements, your involvement is highly valued. Keep in mind that this is just the beginning, and the real beauty lies in personalizing it to reflect your individual talents and achievements. Enjoy the process of crafting impressive projects that truly represents your skills!
 
 Wishing you a fulfilling experience as you code and showcase your work!
 
