@@ -2,27 +2,34 @@ import "./sidebar.css";
 import {
   HomeOutlined,
   UserOutlined,
-  ProfileOutlined,
-  FileAddOutlined,
-  FileMarkdownOutlined,
-  AppstoreAddOutlined,
+  ProjectOutlined,
   SettingOutlined,
   LogoutOutlined,
+  UserAddOutlined,  
   MenuFoldOutlined,
   CloseOutlined,
+  ScheduleOutlined,
+  FolderOutlined,
+  FolderAddOutlined,
+  SendOutlined,
 } from "@ant-design/icons";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-export default function ManagerSidebar() {
+export default function AdminSidebar() {
+  const [path, setPath] = useState(window.location.pathname);
   const [sidebarVisible, setSidebarVisible] = useState(true);
   function toggle() {
     setSidebarVisible(!sidebarVisible);
     const sidebar = document.querySelector('.sidebar');
   sidebar.style.width = !sidebarVisible ? '80px' : '250px';
   }
+
+  useEffect(() => {
+    setPath(window.location.pathname);
+  }, [window.location.pathname]);
 
   return (
     <div className={`sidebar ${sidebarVisible ? "visible" : ""}`}>
@@ -51,7 +58,7 @@ export default function ManagerSidebar() {
         </div>
         <div className="sidebarMenu">
           <ul className="sidebarList">
-            <NavLink to="/users/manager" className="link">
+          <NavLink to="/users/manager" className="link">
               <li
                 className={`sidebarListItem ${
                   !sidebarVisible ? "" : "iconOnly"
@@ -66,7 +73,7 @@ export default function ManagerSidebar() {
               </li>
             </NavLink>
             <NavLink
-              to="/users/manager/users"
+              to="/users/manager/jobs"
               className="link"
               activeClassName="active"
             >
@@ -77,14 +84,14 @@ export default function ManagerSidebar() {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div>
-                  {!sidebarVisible && <UserOutlined className="iconStyle" />}
-                  {!sidebarVisible && <span className="text">Users</span>}
+                  {!sidebarVisible && <FolderOutlined className="iconStyle" />}
+                  {!sidebarVisible && <span className="text">Jobs</span>}
                 </div>
-                {sidebarVisible && <UserOutlined className="iconStyle" />}
+                {sidebarVisible && <FolderOutlined className="iconStyle" />}
               </li>
             </NavLink>
             <NavLink
-              to="/users/manager/leaves"
+              to="/users/manager/addjob"
               className="link"
               activeClassName="active"
             >
@@ -95,14 +102,14 @@ export default function ManagerSidebar() {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div>
-                  {!sidebarVisible && <ProfileOutlined className="iconStyle" />}
-                  {!sidebarVisible && <span className="text">Leave</span>}
+                  {!sidebarVisible && <FolderAddOutlined className="iconStyle" />}
+                  {!sidebarVisible && <span className="text">Add Job</span>}
                 </div>
-                {sidebarVisible && <ProfileOutlined className="iconStyle" />}
+                {sidebarVisible && <FolderAddOutlined className="iconStyle" />}
               </li>
             </NavLink>
             <NavLink
-              to="/users/manager/extraleaves"
+              to="/users/manager/applicants"
               className="link"
               activeClassName="active"
             >
@@ -113,32 +120,14 @@ export default function ManagerSidebar() {
                 style={{ display: "flex", justifyContent: "space-between" }}
               >
                 <div>
-                  {!sidebarVisible && <ProfileOutlined className="iconStyle" />}
-                  {!sidebarVisible && <span className="text">Extra Leave</span>}
+                  {!sidebarVisible && <ProjectOutlined className="iconStyle" />}
+                  {!sidebarVisible && <span className="text">Applicants</span>}
                 </div>
-                {sidebarVisible && <ProfileOutlined className="iconStyle" />}
+                {sidebarVisible && <ProjectOutlined className="iconStyle" />}
               </li>
             </NavLink>
             <NavLink
-              to="/users/manager/applyleaves"
-              className="link"
-              activeClassName="active"
-            >
-              <li
-                className={`sidebarListItem ${
-                  !sidebarVisible ? "" : "iconOnly"
-                }`}
-                style={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <div>
-                  {!sidebarVisible && <FileAddOutlined className="iconStyle" />}
-                  {!sidebarVisible && <span className="text">Apply Leave</span>}
-                </div>
-                {sidebarVisible && <FileAddOutlined className="iconStyle" />}
-              </li>
-            </NavLink>
-            <NavLink
-              to="/users/manager/applyextraleaves"
+              to="/users/manager/approvedapplicants"
               className="link"
               activeClassName="active"
             >
@@ -150,19 +139,19 @@ export default function ManagerSidebar() {
               >
                 <div>
                   {!sidebarVisible && (
-                    <AppstoreAddOutlined className="iconStyle" />
+                    <ScheduleOutlined className="iconStyle" />
                   )}
                   {!sidebarVisible && (
-                    <span className="text">Apply Extra Leave</span>
+                    <span className="text">Approved Applicants</span>
                   )}
                 </div>
                 {sidebarVisible && (
-                  <AppstoreAddOutlined className="iconStyle" />
+                  <ScheduleOutlined className="iconStyle" />
                 )}
               </li>
             </NavLink>
             <NavLink
-              to="/users/manager/myleaves"
+              to="/users/manager/hiredapplicants"
               className="link"
               activeClassName="active"
             >
@@ -174,12 +163,12 @@ export default function ManagerSidebar() {
               >
                 <div>
                   {!sidebarVisible && (
-                    <FileMarkdownOutlined className="iconStyle" />
+                    <SendOutlined className="iconStyle" />
                   )}
-                  {!sidebarVisible && <span className="text">My Leaves</span>}
+                  {!sidebarVisible && <span className="text">Hired Applicants</span>}
                 </div>
                 {sidebarVisible && (
-                  <FileMarkdownOutlined className="iconStyle" />
+                  <SendOutlined className="iconStyle" />
                 )}
               </li>
             </NavLink>
@@ -197,7 +186,7 @@ export default function ManagerSidebar() {
                 <div>
                   {!sidebarVisible && <SettingOutlined className="iconStyle" />}
                   {!sidebarVisible && (
-                    <span className="text">Profile Settings</span>
+                    <span className="text">Edit Profile</span>
                   )}
                 </div>
                 {sidebarVisible && <SettingOutlined className="iconStyle" />}

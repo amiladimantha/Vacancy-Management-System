@@ -160,14 +160,27 @@ function App() {
               <Route path="/users/manager" element={<Pages.Home />} />
             </Routes>
             <Routes>
-              <Route path="/users/manager/users" element={<Pages.UserList />} />
+              <Route path="/users/manager/jobs" element={<Pages.JobsList />} />
+            </Routes>
+            <Routes>
+              <Route path="/users/manager/addjob" element={<Pages.AddJob />} />
+            </Routes>
+            <Routes>
+              <Route path="/users/manager/applicants" element={<Pages.ApplicantsList />} />
+            </Routes>
+            <Routes>
+              <Route path="/users/manager/approvedapplicants" element={<Pages.ApprovedApplicants />} />
+            </Routes>
+            <Routes>
+              <Route path="/users/manager/hiredapplicants" element={<Pages.HiredApplicants />} />
             </Routes>
             <Routes>
               <Route
                 path="/users/manager/edituser"
                 element={<Pages.EditUser />}
               />
-            </Routes>
+            </Routes>            
+
 
             
           </div>

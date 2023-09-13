@@ -85,7 +85,7 @@ export default function HiredApplicants() {
   return (
     <>
       {(() => {
-        if (type === "0") {
+        if (type === "0" || "1") {
           return (
             <div>
               <h2>Hired Applicants</h2>

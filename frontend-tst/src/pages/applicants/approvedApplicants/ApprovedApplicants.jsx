@@ -200,7 +200,7 @@ export default function ApprovedApplicants() {
   return (
     <>
       {(() => {
-        if (type === "0") {
+        if (type === "0" || "1") {
           return (
             <div>
               <h2>Approved Applicants</h2>

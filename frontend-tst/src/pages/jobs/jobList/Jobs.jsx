@@ -201,7 +201,7 @@ export default function JobsList() {
   return (
     <>
       {(() => {
-        if (type === "0") {
+        if (type === "0" || "1") {
           return (
             <div>
               <h2>Job Vacancies</h2>

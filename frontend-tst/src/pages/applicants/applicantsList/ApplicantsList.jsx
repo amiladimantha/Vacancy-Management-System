@@ -159,7 +159,7 @@ export default function ApplicantsList() {
   return (
     <>
       {(() => {
-        if (type === "0") {
+        if (type === "0" || "1") {
           return (
             <div>
               <h2>Applicants</h2>
