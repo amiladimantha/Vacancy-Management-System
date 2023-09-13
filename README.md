@@ -1,31 +1,31 @@
-![image](https://github.com/amiladimantha/Leave-Managment-System/assets/84844150/c328a3d4-387a-446c-bb19-b82bf13cd4ec)
+![image](https://github.com/amiladimantha/Vacancy-Management-System/assets/84844150/efd72771-d589-4a16-9361-a87bcbde32f4)
+![image](https://github.com/amiladimantha/Vacancy-Management-System/assets/84844150/fbde6d4d-84da-4e3f-8f79-8ced896eb5bd)
+![image](https://github.com/amiladimantha/Vacancy-Management-System/assets/84844150/bec21a9c-fbf9-4ebb-a0d8-2115d1348877)
+![image](https://github.com/amiladimantha/Vacancy-Management-System/assets/84844150/9afa6246-f4f8-4433-81c8-8ed4c8124c71)
+
+
 # Introduction 
 
-Leave management system : Has the user roles Admin , Manager, Employees
+Vacancy management system : Has the user roles Admin , Manager
 
 Admin 
 1. View all Users details
-2. View all Leave and Extra Leave requests
-3. Create/Update/Delete Users 
-4. Create/Update/Delete Leaves taken by any user role
-5. Create/Update/Delete Extra Leaves taken by any user role
-6. Approve/Reject Leave and Extra Leave requests
-7. Create Leave and Extra Leave requests
-8. View Leaves and Extra Leaves requested by own account
-9. View/Update personal data
+2. View all Jobs posts
+3. View all applicant details
+4. Create/Update/Delete Users 
+5. Create/Update/Delete Job Posts
+6. Update status to Approved/Rejected for applicants
+7. Update status to Hired/Rejected for applicants
+8. View/Update personal data
 
 Manager 
-1. View all Employee details
-2. View all Leave and Extra Leave requests
-3. Create Leave and Extra Leave requests
-4. Approve/Reject Leave and Extra Leave requests
-5. View Leaves and Extra Leaves requested by own account
+1. View all Jobs posts
+2. View all applicant details
+3. Create/Update/Delete Job Posts
+4. Update status to Approved/Rejected for applicants
+5. Update status to Hired/Rejected for applicants
 6. View/Update personal data
 
-Employee 
-1. Create Leave and Extra Leave requests
-2. View Leaves and Extra Leaves requested by own account
-3. View/Update personal data
 
 ## License and Attribution
 
@@ -35,11 +35,8 @@ This project was something I did for an internship, so other than using the Logo
 
 - React.js
 - ASP.NET C#
-- SQL/XML/OLEDB
+- SQL
 
-## Pre Recorded Demo
-
-- Click [here](https://hotel-landin-page-rosy.vercel.app/) to view the live demo.
 
 ## Getting Started
 
