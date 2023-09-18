@@ -80,7 +80,7 @@ You can configure the database string using appsettings.json file in **vms_backe
 The database name given by me in connection string is "vmsdb"
 
 
-The SQL commands to create the database tables.
+The SQL commands to create the database tables are below.
 
 # ******************************
 create database vmsdb;
@@ -128,7 +128,7 @@ Foreign key (Creator_ID) references Users(ID)
 
 
 # ******************************
-create an admin account from here, 
+create an admin account by using the below query,
 
 insert into Users (name,email,password,phone,isactive,isapproved,accounttype) 
 values ('admin','admin@gmail.com','nyKq4FXckfUq3AyecAFYqw==', '9773581169', 1,1,0)
